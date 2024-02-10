@@ -13,7 +13,13 @@ public class Main {
         employees[7]=new Employee("Троеглазов Насим Артурович",1,100000);
         employees[8]=new Employee("Иванов Иван Иванович",5,120000);
         employees[9]=new Employee("Пауков Гаад Васильевич",3,300000);
+        employees[0].setSalary(150000);
+        employees[7].setNumDepart(2);
+        for(Employee employee:employees){
+            System.out.println(employee.getId()+" "+
+                    employee.getNameFull()+" "+employee.getNumDepart()+
+                    " "+employee.getSalary());
+        }
 
-        System.out.println(employees[9].getId());
     }
 }
