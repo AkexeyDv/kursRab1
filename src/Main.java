@@ -1,5 +1,3 @@
-import java.awt.*;
-
 public class Main {
     private static final Employee[] employees = new Employee[10];
 
@@ -98,7 +96,7 @@ public class Main {
     }
 
     public static float midSalary() {
-        return (float) countCosts() / employees.length;
+        return countCosts() / employees.length;
     }
 
     public static void listEmployees() {
@@ -155,7 +153,7 @@ public class Main {
     }
 
     public static float midSalaryDep(int dep) {
-        return (float) countCostsDep(dep) / countEmployeeDep(dep);
+        return countCostsDep(dep) / countEmployeeDep(dep);
     }
 
     public static int countEmployeeDep(int dep) {
