@@ -3,11 +3,11 @@ import java.util.Objects;
 public class Employee {
     private String nameFull;
     private int numDepart;
-    private int salary;
+    private float salary;
     private int id;
     static int i = 1;
 
-    public Employee(String nameFull, int numDepart, int salary) {
+    public Employee(String nameFull, int numDepart, float salary) {
         this.nameFull = nameFull;
         validDepart(numDepart);
         this.salary = salary;
@@ -25,7 +25,7 @@ public class Employee {
         return numDepart;
     }
 
-    public int getSalary() {
+    public float getSalary() {
         return salary;
     }
 
@@ -35,7 +35,7 @@ public class Employee {
     public void setNumDepart(int numDepart){
         validDepart(numDepart);
     }
-    public void setSalary(int salary){
+    public void setSalary(float salary){
         this.salary=salary;
     }
 
