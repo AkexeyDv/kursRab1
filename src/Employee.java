@@ -7,11 +7,13 @@ public class Employee {
 
     public Employee(String nameFull, int numDepart, int salary) {
         this.nameFull = nameFull;
-        this.numDepart = numDepart;
+        validDepart(numDepart);
         this.salary = salary;
         this.id = i++;
 
     }
+
+
 
     public String getNameFull() {
         return nameFull;
@@ -29,9 +31,24 @@ public class Employee {
         return id;
     }
     public void setNumDepart(int numDepart){
-        this.numDepart=numDepart;
+        validDepart(numDepart);
     }
     public void setSalary(int salary){
         this.salary=salary;
+    }
+
+    @Override
+    public String toString() {
+        return  "id: " + id +
+                " Полное имя: " + nameFull +
+                ", отдел: " + numDepart +
+                ", зарплата сотрудника: " + salary+" руб.";
+    }
+    public void validDepart(int numDepart){
+        if(numDepart<1||numDepart>5){
+            throw new IllegalArgumentException("Такого отдела нет. Укажите отдел с 1 по 5.");
+        }else {
+            this.numDepart = numDepart;
+        }
     }
 }
