@@ -36,15 +36,15 @@ public class Main {
         printSeparator();
         indexationSalary(employees, 10);
         printSeparator();
-        System.out.println("Минимальная з/п в отделе у сотртудника: " + employees[minSalaryDep(employees,2)].getNameFull());
+        System.out.println("Минимальная з/п в отделе у сотртудника: " + employees[minSalaryDep(employees, 2)].getNameFull());
         printSeparator();
-        System.out.println("Максимальная з/п в отделе у сотртудника: " +employees[maxSalaryDep(employees,2)].getNameFull());
+        System.out.println("Максимальная з/п в отделе у сотртудника: " + employees[maxSalaryDep(employees, 2)].getNameFull());
         printSeparator();
-        System.out.println(countCostsDep(employees,2));
+        System.out.println(countCostsDep(employees, 2));
         printSeparator();
-        System.out.println(countEmployeeDep(employees,2));
-        System.out.println(midSalaryDep(employees,2));
-        indexationSalaryDep(employees,2,20);
+        System.out.println(countEmployeeDep(employees, 2));
+        System.out.println(midSalaryDep(employees, 2));
+        indexationSalaryDep(employees, 2, 20);
     }
 
     //Easy
@@ -109,49 +109,55 @@ public class Main {
             i.setSalary(i.getSalary() + i.getSalary() / 100 * percent);
         }
     }
-    public static int minSalaryDep(Employee[] employees,int dep) {
+
+    public static int minSalaryDep(Employee[] employees, int dep) {
         int min = employees[0].getSalary();
         int idx = 0;
         for (int i = 0; i <= employees.length - 1; i++) {
-            if (employees[i].getSalary() < min&&employees[i].getNumDepart()==dep) {
+            if (employees[i].getSalary() < min && employees[i].getNumDepart() == dep) {
                 min = employees[i].getSalary();
                 idx = i;
             }
         }
         return idx;
     }
-    public static int maxSalaryDep(Employee[] employees,int dep) {
+
+    public static int maxSalaryDep(Employee[] employees, int dep) {
         int max = employees[0].getSalary();
         int idx = 0;
         for (int i = 0; i <= employees.length - 1; i++) {
-            if (employees[i].getSalary() > max&&employees[i].getNumDepart()==dep) {
+            if (employees[i].getSalary() > max && employees[i].getNumDepart() == dep) {
                 max = employees[i].getSalary();
                 idx = i;
             }
         }
         return idx;
     }
+
     public static int countCostsDep(Employee[] employees, int dep) {
         int s = 0;
         for (int i = 0; i <= employees.length - 1; i++) {
-            if(employees[i].getNumDepart()==dep){
+            if (employees[i].getNumDepart() == dep) {
                 s = s + employees[i].getSalary();
             }
         }
         return s;
     }
-    public static float midSalaryDep(Employee[] employees,int dep) {
-        return (float) countCostsDep(employees,dep) / countEmployeeDep(employees,dep);
+
+    public static float midSalaryDep(Employee[] employees, int dep) {
+        return (float) countCostsDep(employees, dep) / countEmployeeDep(employees, dep);
     }
-    public static int countEmployeeDep(Employee[] employees, int dep){
-        int count=0;
-        for(Employee i:employees){
-            if (i.getNumDepart()==dep){
+
+    public static int countEmployeeDep(Employee[] employees, int dep) {
+        int count = 0;
+        for (Employee i : employees) {
+            if (i.getNumDepart() == dep) {
                 count++;
             }
         }
         return count;
     }
+
     public static void indexationSalaryDep(Employee[] employees, int dep, int percent) {
         for (Employee i : employees) {
             if (i.getNumDepart() == dep) {
