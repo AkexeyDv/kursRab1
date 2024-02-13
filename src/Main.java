@@ -1,31 +1,43 @@
 public class Main {
-    private static final Employee[] employees = new Employee[10];
+public static EmployeeBook employeeBook=new EmployeeBook();
+    public static void printSeparator() {
 
+        System.out.println("=====================================");
+    }
     public static void main(String[] args) {
-        employees[0] = new Employee("Иванов Иван Иванович", 1, 240000);
-        employees[1] = new Employee("Петров Петр Семенович", 3, 150000);
-        employees[2] = new Employee("Чупыров Поликарп Антонович", 4, 120000);
-        employees[3] = new Employee("Стамескин Арнольд Трофимович", 4, 80000);
-        employees[4] = new Employee("Поджелудочный Святослав Рувимович", 2,
-                250000);
-        employees[5] = new Employee("Синяков Филипп Михайлович", 5, 40000);
-        employees[6] = new Employee("Заварушкин Анисим Прохорович", 1,
-                130000);
-        employees[7] = new Employee("Троеглазов Насим Артурович", 1, 100000);
-        employees[8] = new Employee("Иванов Иван Иванович", 5, 120000);
-        employees[9] = new Employee("Пауков Гаад Васильевич", 3, 300000);
+        printSeparator();
+        employeeBook.addEmployee("Иванов Иван Иванович", 1, 240000);
+        employeeBook.addEmployee("Петров Петр Семенович", 3, 150000);
+        employeeBook.addEmployee("Чупыров Поликарп Антонович", 4, 120000);
+        employeeBook.addEmployee("Стамескин Арнольд Трофимович", 4, 80000);
+        employeeBook.addEmployee("Поджелудочный Святослав Рувимович", 2,250000);
+        employeeBook.addEmployee("Синяков Филипп Михайлович", 5, 40000);
+        employeeBook.addEmployee("Заварушкин Анисим Прохорович", 1,130000);
+        employeeBook.addEmployee("Троеглазов Насим Артурович", 1, 100000);
+        employeeBook.addEmployee("Иванов Иван Иванович", 5, 120000);
+        employeeBook.addEmployee("Пауков Гаад Васильевич", 3, 300000);
+        employeeBook.addEmployee("Жесткарев Василий Федорович",4,125000);
+        employeeBook.printEmployees();
+        printSeparator();
+        System.out.println(employeeBook.findEmployee("Петров Петр Семенович"));
+        printSeparator();
+        employeeBook.delEmployee("Жесткарев Василий Федорович");
+
+        /*
         employees[0].setSalary(150000);
         employees[7].setNumDepart(2);
+        */
+
 //Easy
-        printEmployees();
+        /*printEmployees();
         printSeparator();
         System.out.println("Затраты на з/п составляют: " + countCosts() + " руб.");
         printSeparator();
         System.out.println("Минимальная заработная плата у сотрудника: \n" +
-                employees[minSalary()].getNameFull()+" "+employees[minSalary()].getSalary()+" .руб.");
+                employees[minSalary()].getNameFull() + " " + employees[minSalary()].getSalary() + " .руб.");
         printSeparator();
         System.out.println("Максимальная заработная плата у сотрудника: \n" +
-                employees[maxSalary()].getNameFull()+" "+employees[maxSalary()].getSalary()+" .руб.");
+                employees[maxSalary()].getNameFull() + " " + employees[maxSalary()].getSalary() + " .руб.");
         printSeparator();
         System.out.println("Средняя заработная плата составляет: " + midSalary());
         printSeparator();
@@ -36,12 +48,12 @@ public class Main {
         indexationSalary(10);
         printSeparator();
         System.out.println("Минимальная з/п в отделе у сотртудника: " +
-                employees[minSalaryDep(2)].getNameFull()+" "+
-                employees[minSalaryDep(2)].getSalary()+" .руб.");
+                employees[minSalaryDep(2)].getNameFull() + " " +
+                employees[minSalaryDep(2)].getSalary() + " .руб.");
         printSeparator();
         System.out.println("Максимальная з/п в отделе у сотртудника: " +
-                employees[maxSalaryDep(2)].getNameFull()+" "+
-                employees[maxSalaryDep(2)].getSalary()+" .руб.");
+                employees[maxSalaryDep(2)].getNameFull() + " " +
+                employees[maxSalaryDep(2)].getSalary() + " .руб.");
         printSeparator();
         System.out.println("Затраты на з/п отдела: " + countCostsDep(2));
         printSeparator();
@@ -56,6 +68,7 @@ public class Main {
     }
 
     //Easy
+    /*
     public static void printEmployees() {
         for (Employee i : employees) {
             System.out.println(i);
@@ -107,9 +120,7 @@ public class Main {
         }
     }
 
-    public static void printSeparator() {
-        System.out.println("=====================================");
-    }
+
 
     //Mid
     public static void indexationSalary(int percent) {
@@ -153,6 +164,7 @@ public class Main {
     }
 
     public static float midSalaryDep(int dep) {
+
         return countCostsDep(dep) / countEmployeeDep(dep);
     }
 
@@ -173,31 +185,34 @@ public class Main {
             }
         }
     }
-    public static void printEmployeesDep(int dep){
-        System.out.println("Список сотрудников отдела "+dep);
-        for(Employee i:employees){
-            if(i.getNumDepart()==dep){
-                System.out.println(i.getId()+" "+i.getNameFull()+" "+
+
+    public static void printEmployeesDep(int dep) {
+        System.out.println("Список сотрудников отдела " + dep);
+        for (Employee i : employees) {
+            if (i.getNumDepart() == dep) {
+                System.out.println(i.getId() + " " + i.getNameFull() + " " +
                         i.getSalary());
             }
 
         }
     }
-    public static void printSalaryLess(int less){
-        System.out.println("Сотрудники с зарплатой "+ less +" руб. и меньше:");
-        for(Employee i:employees){
-            if(i.getSalary()<=less){
-                System.out.println(i.getId()+" "+i.getNameFull()+" "+i.getSalary());
-            }
-        }
-    }
-    public static void printSalaryMore(int more){
-        System.out.println("Сотрудники с зарплатой "+ more +" руб. и больше:");
-        for(Employee i:employees){
-            if(i.getSalary()>=more){
-                System.out.println(i.getId()+" "+i.getNameFull()+" "+i.getSalary());
+
+    public static void printSalaryLess(int less) {
+        System.out.println("Сотрудники с зарплатой " + less + " руб. и меньше:");
+        for (Employee i : employees) {
+            if (i.getSalary() <= less) {
+                System.out.println(i.getId() + " " + i.getNameFull() + " " + i.getSalary());
             }
         }
     }
 
-}
+    public static void printSalaryMore(int more) {
+        System.out.println("Сотрудники с зарплатой " + more + " руб. и больше:");
+        for (Employee i : employees) {
+            if (i.getSalary() >= more) {
+                System.out.println(i.getId() + " " + i.getNameFull() + " " + i.getSalary());
+            }
+        }
+    }*/
+
+}}
