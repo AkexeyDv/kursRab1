@@ -13,11 +13,11 @@ public static EmployeeBook employeeBook=new EmployeeBook();
         employeeBook.addEmployee("Поджелудочный Святослав Рувимович", 2,250000);
         employeeBook.addEmployee("Синяков Филипп Михайлович", 5, 40000);
         employeeBook.addEmployee("Заварушкин Анисим Прохорович", 1,130000);
-        employeeBook.addEmployee("Троеглазов Насим Артурович", 1, 100000);
-        employeeBook.addEmployee("Иванов Иван Иванович", 5, 120000);
-        employeeBook.addEmployee("Пауков Гаад Васильевич", 3, 300000);
-        employeeBook.addEmployee("Жесткарев Василий Федорович",4,125000);
-        employeeBook.printEmployees();
+       // employeeBook.addEmployee("Троеглазов Насим Артурович", 1, 100000);
+       // employeeBook.addEmployee("Иванов Иван Иванович", 5, 120000);
+       // employeeBook.addEmployee("Пауков Гаад Васильевич", 3, 300000);
+        //employeeBook.addEmployee("Жесткарев Василий Федорович",4,125000);
+       // employeeBook.printEmployees();
         printSeparator();
         System.out.println(employeeBook.findEmployeeId("Петров Петр Семенович"));
         printSeparator();
@@ -28,8 +28,28 @@ public static EmployeeBook employeeBook=new EmployeeBook();
         printSeparator();
         System.out.println(employeeBook.findFullNameById(12));
         System.out.println(employeeBook.findFullNameById(3));
-
-
+        printSeparator();
+        System.out.println("Подсчет затрат на з/п");
+        System.out.println("на предприятии");
+        System.out.println(employeeBook.countCosts());
+        System.out.println("по отделу");
+        System.out.println(employeeBook.countCosts(3));
+        printSeparator();
+        System.out.println(employeeBook.returnFullName(25));
+        printSeparator();
+        System.out.println("Сотрудник с минимальным окладом");
+        System.out.println(employeeBook.returnFullName(employeeBook.minSalary()));
+        System.out.println("Сотрудник с максимальным окладом");
+        System.out.println(employeeBook.returnFullName(employeeBook.maxSalary()));
+        printSeparator();
+        employeeBook.listEmployees();
+        printSeparator();
+        employeeBook.indexationSalary(10);
+        System.out.println("Сотрудник с минимальным окладом в отделе");
+        System.out.println(employeeBook.returnFullName(employeeBook.minSalary(4)));
+        System.out.println("Сотрудник с максимальным окладом в отделе");
+        System.out.println(employeeBook.returnFullName(employeeBook.maxSalary(4)));
+        printSeparator();
 
 
         /*

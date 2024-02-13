@@ -25,7 +25,7 @@ public class EmployeeBook {
             System.out.println("Не найден сотрудник "+nameFull);
         }
     }
-    //Поиск индекса сотрудника по ФИО
+    //Поиск id сотрудника по ФИО
     public int findEmployeeId(String nameFull){
         for(int i=0;i<employees.length;i++){
             if( employees[i]!=null&&employees[i].getNameFull().equals(nameFull))
@@ -46,7 +46,7 @@ public class EmployeeBook {
         }
         return -1;
     }
-
+//Поиск сотрудника по Id
     public String findFullNameById(int id){
         for (int i=0;i<employees.length;i++){
             if(employees[i]!=null&&id==employees[i].getId()){
@@ -66,31 +66,49 @@ public class EmployeeBook {
         }
 
     }
-
+//Подсчет затрат
+    //на предприятии
     public float countCosts() {
         float s = 0;
 
         for (Employee i : employees) {
-            s = s + i.getSalary();
+            if(i!=null) {
+                s = s + i.getSalary();
+            }
+        }
+        return s;
+    }
+    //затраты по отделу
+    public float countCosts(int dep) {
+        float s = 0;
+        for (Employee i : employees) {
+            if (i!=null&&i.getNumDepart() == dep) {
+                s = s + i.getSalary();
+            }
         }
         return s;
     }
 
+//Нахождение сотрудника по индексу массива
     public String returnFullName(int idx) {
-        return employees[idx].getNameFull();
+        if(idx<=employees.length-1) {
+            return employees[idx].getNameFull();
+        }else{
+            return "Индекс за пределом БД";
+        }
     }
-
+//Зарплата сотрудника
     public float returnSalary(int idx) {
         return employees[idx].getSalary();
     }
 
     public int minSalary() {
-
-        float min = employees[0].getSalary();
         int idx = 0;
 
+        //float min = employees[0].getSalary();
+        float min=employees[maxSalary()].getSalary();
         for (int i = 0; i <= employees.length - 1; i++) {
-            if (employees[i].getSalary() < min) {
+            if (employees[i]!=null&&employees[i].getSalary() < min) {
                 min = employees[i].getSalary();
                 idx = i;
             }
@@ -98,19 +116,20 @@ public class EmployeeBook {
 
         return idx;
     }
-
+//индекс сотрудника с минимальным окладом
     public int maxSalary() {
-        float max = employees[0].getSalary();
+        //float max = employees[0].getSalary();
+        float max=0;
         int idx = 0;
         for (int i = 0; i <= employees.length - 1; i++) {
-            if (employees[i].getSalary() > max) {
+            if (employees[i]!=null&&employees[i].getSalary() > max) {
                 max = employees[i].getSalary();
                 idx = i;
             }
         }
         return idx;
     }
-
+//индекс сотрудника с максимальным окладом
     public float midSalary() {
         return countCosts() / employees.length;
     }
@@ -118,8 +137,9 @@ public class EmployeeBook {
     public void listEmployees() {
         System.out.println("\nПоименный список сотрудников фирмы\n");
         for (Employee i : employees) {
-
-            System.out.println(i.getNameFull());
+            if(i!=null) {
+                System.out.println(i.getNameFull());
+            }
         }
     }
 
@@ -127,27 +147,29 @@ public class EmployeeBook {
     //Mid
     public void indexationSalary(int percent) {
         for (Employee i : employees) {
-            i.setSalary(i.getSalary() + i.getSalary() / 100 * percent);
+            if(i!=null) {
+                i.setSalary(i.getSalary() + i.getSalary() / 100 * percent);
+            }
         }
     }
-
-    public int minSalaryDep(int dep) {
-        float min = employees[0].getSalary();
+//Минимальная з/п по отделу
+    public int minSalary(int dep) {
+        float min = employees[maxSalary(dep)].getSalary();
         int idx = 0;
-        for (int i = 0; i <= employees.length - 1; i++) {
-            if (employees[i].getSalary() < min && employees[i].getNumDepart() == dep) {
+        for (int i = 0; i < employees.length; i++) {
+            if (employees[i]!=null&&employees[i].getSalary() < min && employees[i].getNumDepart() == dep) {
                 min = employees[i].getSalary();
                 idx = i;
             }
         }
         return idx;
     }
-
-    public int maxSalaryDep(int dep) {
-        float max = employees[0].getSalary();
+//Максимальная з/п по отделу
+    public int maxSalary(int dep) {
+        float max = 0;
         int idx = 0;
-        for (int i = 0; i <= employees.length - 1; i++) {
-            if (employees[i].getSalary() > max && employees[i].getNumDepart() == dep) {
+        for (int i = 0; i < employees.length; i++) {
+            if (employees[i]!=null&&employees[i].getSalary() > max && employees[i].getNumDepart() == dep) {
                 max = employees[i].getSalary();
                 idx = i;
             }
@@ -155,18 +177,10 @@ public class EmployeeBook {
         return idx;
     }
 
-    public float countCostsDep(int dep) {
-        float s = 0;
-        for (Employee i : employees) {
-            if (i.getNumDepart() == dep) {
-                s = s + i.getSalary();
-            }
-        }
-        return s;
-    }
+//Средняя по отделу
 
     public float midSalaryDep(int dep) {
-        return countCostsDep(dep) / countEmployeeDep(dep);
+        return countCosts(dep) / countEmployeeDep(dep);
     }
 
     public int countEmployeeDep(int dep) {
