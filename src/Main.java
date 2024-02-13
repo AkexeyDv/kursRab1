@@ -19,9 +19,18 @@ public static EmployeeBook employeeBook=new EmployeeBook();
         employeeBook.addEmployee("Жесткарев Василий Федорович",4,125000);
         employeeBook.printEmployees();
         printSeparator();
-        System.out.println(employeeBook.findEmployee("Петров Петр Семенович"));
+        System.out.println(employeeBook.findEmployeeId("Петров Петр Семенович"));
         printSeparator();
-        employeeBook.delEmployee("Жесткарев Василий Федорович");
+        employeeBook.delEmployee("Пауков Гаад Васильевич");
+        employeeBook.addEmployee("Жесткарев Василий Федорович",3,280000);
+        printSeparator();
+        employeeBook.printEmployees();
+        printSeparator();
+        System.out.println(employeeBook.findFullNameById(12));
+        System.out.println(employeeBook.findFullNameById(3));
+
+
+
 
         /*
         employees[0].setSalary(150000);
