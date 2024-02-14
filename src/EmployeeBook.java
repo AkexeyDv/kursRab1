@@ -75,6 +75,7 @@ public class EmployeeBook {
             }
         }
     }
+
     //mid-1
     public void indexationSalary(int percent) {
         for (Employee i : employees) {
@@ -83,6 +84,7 @@ public class EmployeeBook {
             }
         }
     }
+
     //mid-2a Сотрудник с мин. окладом
     public String freeMinSalary(int dep) {
         return returnFullName(minSalary(dep));
@@ -92,6 +94,7 @@ public class EmployeeBook {
     public String freeMaxSalary(int dep) {
         return returnFullName(maxSalary(dep));
     }
+
     //Минимальная з/п по отделу
     private int minSalary(int dep) {
         float min = employees[maxSalary(dep)].getSalary();
@@ -128,42 +131,79 @@ public class EmployeeBook {
         }
         return s;
     }
+
     //mid-2d Средняя з/п по отделу
     public float midSalary(int dep) {
         return countCosts(dep) / countEmployeeDep(dep);
     }
-    //mid-2e
+
+    //mid-2e Индексация з/п в отделе
     public void indexationSalary(int dep, int percent) {
         for (Employee i : employees) {
-            if (i.getNumDepart() == dep) {
+            if (i != null && i.getNumDepart() == dep) {
                 i.setSalary(i.getSalary() + i.getSalary() / 100 * percent);
             }
         }
     }
 
-    //Добавление нового сотрудника
-    public void addEmployee(String nameFull, int numDepart, int salary) {
+    //mid-2f
+    public void listEmployees(int dep) {
+        System.out.println("Список сотрудников отдела " + dep);
+        for (Employee i : employees) {
+            if (i != null && i.getNumDepart() == dep) {
+                System.out.println(i.getId() + " " + i.getNameFull() + " " +
+                        i.getSalary());
+            }
+
+        }
+    }
+
+    //mid-3a Сотрудник с зарплатой меньше, чем...
+    public void printSalaryLess(int less) {
+        System.out.println("Сотрудники с зарплатой " + less + " руб. и меньше:");
+        for (Employee i : employees) {
+            if (i != null && i.getSalary() <= less) {
+                System.out.println(i.getId() + " " + i.getNameFull() + " " + i.getSalary());
+            }
+        }
+    }
+
+    //mid-3b Сотрудник с зарплатой больше, чем...
+    public void printSalaryMore(int more) {
+        System.out.println("Сотрудники с зарплатой " + more + " руб. и больше:");
+        for (Employee i : employees) {
+            if (i != null && i.getSalary() >= more) {
+                System.out.println(i.getId() + " " + i.getNameFull() + " " + i.getSalary());
+            }
+        }
+    }
+
+    //hard-4a Добавление нового сотрудника
+    public boolean addEmployee(String nameFull, int numDepart, int salary) {
         int idx = findIndexFree();
         if (idx != -1) {
             employees[idx] = new Employee(nameFull, numDepart, salary);
+            return true;
         } else {
             System.out.println("База заполнена. Сотрудник не внесен!!!");
+            return false;
         }
     }
 
     //Удаление сотрудника
-    public void delEmployee(String nameFull) {
-        int idx = findEmployeeId(nameFull);
+    public void delEmployee(int id) {
+        int idx = findIdxById(id);
         if (idx != -1) {
             for (int i = 0; i < employees.length; i++) {
                 if (employees[i].getId() == idx) {
                     employees[i] = null;
-                    System.out.println("Сотрудник " + nameFull + " успешно удален");
+                    System.out.println("Сотрудник " + employees[i].getNameFull() +
+                            " c id=" + id + " успешно удален");
                     return;
                 }
             }
         } else {
-            System.out.println("Не найден сотрудник " + nameFull);
+            System.out.println("Не найден сотрудник c id=" + id);
         }
     }
 
@@ -177,9 +217,19 @@ public class EmployeeBook {
         return -1;
     }
 
+    //Поиск idx сотрудника по id
+    public int findIdxById(int id) {
+        for (int i = 0; i < employees.length; i++) {
+            if (employees[i] != null && employees[i].getId() == id) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
 
     //Поиск свободного места
-    public int findIndexFree() {
+    private int findIndexFree() {
         for (int i = 0; i < employees.length; i++) {
             if (employees[i] == null) {
                 return i;
@@ -192,14 +242,13 @@ public class EmployeeBook {
     public String findFullNameById(int id) {
         for (int i = 0; i < employees.length; i++) {
             if (employees[i] != null && id == employees[i].getId()) {
+                System.out.println("Найден сотрудник " + employees[i].getNameFull() + " c id=" + id);
                 return employees[i].getNameFull();
             }
         }
         return "Такого Id нет";
 
     }
-
-
 
 
     //Нахождение сотрудника по индексу массива
@@ -217,54 +266,15 @@ public class EmployeeBook {
     }
 
 
-
-
-
-
-
-//Средняя по отделу
-
-
-
     public int countEmployeeDep(int dep) {
         int count = 0;
         for (Employee i : employees) {
-            if (i!=null&&i.getNumDepart() == dep) {
+            if (i != null && i.getNumDepart() == dep) {
                 count++;
             }
         }
         return count;
     }
 
-
-
-    public void printEmployeesDep(int dep) {
-        System.out.println("Список сотрудников отдела " + dep);
-        for (Employee i : employees) {
-            if (i.getNumDepart() == dep) {
-                System.out.println(i.getId() + " " + i.getNameFull() + " " +
-                        i.getSalary());
-            }
-
-        }
-    }
-
-    public void printSalaryLess(int less) {
-        System.out.println("Сотрудники с зарплатой " + less + " руб. и меньше:");
-        for (Employee i : employees) {
-            if (i.getSalary() <= less) {
-                System.out.println(i.getId() + " " + i.getNameFull() + " " + i.getSalary());
-            }
-        }
-    }
-
-    public void printSalaryMore(int more) {
-        System.out.println("Сотрудники с зарплатой " + more + " руб. и больше:");
-        for (Employee i : employees) {
-            if (i.getSalary() >= more) {
-                System.out.println(i.getId() + " " + i.getNameFull() + " " + i.getSalary());
-            }
-        }
-    }
 
 }

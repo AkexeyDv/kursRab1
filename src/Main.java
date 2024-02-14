@@ -21,7 +21,7 @@ public static EmployeeBook employeeBook=new EmployeeBook();
         printSeparator();
         System.out.println(employeeBook.findEmployeeId("Петров Петр Семенович"));
         printSeparator();
-        employeeBook.delEmployee("Пауков Гаад Васильевич");
+        employeeBook.delEmployee(10);
         employeeBook.addEmployee("Жесткарев Василий Федорович",3,280000);
         printSeparator();
         employeeBook.printEmployees();
