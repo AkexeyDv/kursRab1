@@ -28,9 +28,9 @@ public class Main {
         System.out.println(employeeBook.countCosts());
         printSeparator();
         System.out.println("Минимальная з/п:");
-        System.out.println(employeeBook.freeMinSalary());
+        System.out.println(employeeBook.findMinSalary());
         System.out.println("Максимальная з/п:");
-        System.out.println(employeeBook.freeMaxSalary());
+        System.out.println(employeeBook.findMaxSalary());
         printSeparator();
         System.out.println("Средняя з/п:");
         System.out.println(employeeBook.midSalary());
@@ -40,9 +40,9 @@ public class Main {
         employeeBook.indexationSalary(15);
         printSeparator();
         System.out.println("Минимальная з/п в отделе:");
-        System.out.println(employeeBook.freeMinSalary(4));
+        System.out.println(employeeBook.findMinSalary(4));
         System.out.println("Максимальная з/п в отделе:");
-        System.out.println(employeeBook.freeMaxSalary(4));
+        System.out.println(employeeBook.findMaxSalary(4));
         System.out.println("Сумма затрат в отделе:");
         System.out.println(employeeBook.countCosts(4));
         System.out.println("Средняя з/п:");
@@ -55,7 +55,7 @@ public class Main {
         printSeparator();
         employeeBook.printSalaryMore(150000);
         printSeparator();
-        employeeBook.delEmployee(3);
+        employeeBook.delEmployee(25);
         employeeBook.findFullNameById(5);
 
 

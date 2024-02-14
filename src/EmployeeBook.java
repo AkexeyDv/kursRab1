@@ -25,12 +25,12 @@ public class EmployeeBook {
     }
 
     //easy-8c Сотрудник с мин. окладом
-    public String freeMinSalary() {
+    public String findMinSalary() {
         return returnFullName(minSalary());
     }
 
     //easy-8d Сотрудник с мин. окладом
-    public String freeMaxSalary() {
+    public String findMaxSalary() {
         return returnFullName(maxSalary());
     }
 
@@ -86,12 +86,12 @@ public class EmployeeBook {
     }
 
     //mid-2a Сотрудник с мин. окладом
-    public String freeMinSalary(int dep) {
+    public String findMinSalary(int dep) {
         return returnFullName(minSalary(dep));
     }
 
     //mid-2b Сотрудник с мин. окладом
-    public String freeMaxSalary(int dep) {
+    public String findMaxSalary(int dep) {
         return returnFullName(maxSalary(dep));
     }
 
