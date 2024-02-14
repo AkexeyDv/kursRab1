@@ -38,18 +38,20 @@ public static EmployeeBook employeeBook=new EmployeeBook();
         System.out.println(employeeBook.returnFullName(25));
         printSeparator();
         System.out.println("Сотрудник с минимальным окладом");
-        System.out.println(employeeBook.returnFullName(employeeBook.minSalary()));
+        System.out.println(employeeBook.freeMinSalary());
         System.out.println("Сотрудник с максимальным окладом");
-        System.out.println(employeeBook.returnFullName(employeeBook.maxSalary()));
+        System.out.println(employeeBook.freeMaxSalary());
         printSeparator();
+        System.out.println(employeeBook.midSalary());
         employeeBook.listEmployees();
         printSeparator();
         employeeBook.indexationSalary(10);
         System.out.println("Сотрудник с минимальным окладом в отделе");
-        System.out.println(employeeBook.returnFullName(employeeBook.minSalary(4)));
+        System.out.println(employeeBook.freeMinSalary(4));
         System.out.println("Сотрудник с максимальным окладом в отделе");
-        System.out.println(employeeBook.returnFullName(employeeBook.maxSalary(4)));
+        System.out.println(employeeBook.freeMaxSalary(4));
         printSeparator();
+        System.out.println(employeeBook.midSalary(4));
 
 
         /*
