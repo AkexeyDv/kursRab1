@@ -190,15 +190,16 @@ public class EmployeeBook {
         }
     }
 
-    //Удаление сотрудника
+    //hard-4b Удаление сотрудника
     public void delEmployee(int id) {
         int idx = findIdxById(id);
         if (idx != -1) {
             for (int i = 0; i < employees.length; i++) {
                 if (employees[i].getId() == idx) {
-                    employees[i] = null;
+
                     System.out.println("Сотрудник " + employees[i].getNameFull() +
                             " c id=" + id + " успешно удален");
+                    employees[i] = null;
                     return;
                 }
             }
@@ -207,8 +208,20 @@ public class EmployeeBook {
         }
     }
 
+    //hard-5 Поиск сотрудника по Id
+    public String findFullNameById(int id) {
+        for (int i = 0; i < employees.length; i++) {
+            if (employees[i] != null && id == employees[i].getId()) {
+                System.out.println("Найден сотрудник " + employees[i].getNameFull() + " c id=" + id);
+                return employees[i].getNameFull();
+            }
+        }
+        return "Такого Id нет";
+
+    }
+
     //Поиск id сотрудника по ФИО
-    public int findEmployeeId(String nameFull) {
+    private int findEmployeeId(String nameFull) {
         for (int i = 0; i < employees.length; i++) {
             if (employees[i] != null && employees[i].getNameFull().equals(nameFull)) {
                 return employees[i].getId();
@@ -217,8 +230,9 @@ public class EmployeeBook {
         return -1;
     }
 
+
     //Поиск idx сотрудника по id
-    public int findIdxById(int id) {
+    private int findIdxById(int id) {
         for (int i = 0; i < employees.length; i++) {
             if (employees[i] != null && employees[i].getId() == id) {
                 return i;
@@ -238,21 +252,9 @@ public class EmployeeBook {
         return -1;
     }
 
-    //Поиск сотрудника по Id
-    public String findFullNameById(int id) {
-        for (int i = 0; i < employees.length; i++) {
-            if (employees[i] != null && id == employees[i].getId()) {
-                System.out.println("Найден сотрудник " + employees[i].getNameFull() + " c id=" + id);
-                return employees[i].getNameFull();
-            }
-        }
-        return "Такого Id нет";
-
-    }
-
 
     //Нахождение сотрудника по индексу массива
-    public String returnFullName(int idx) {
+    private String returnFullName(int idx) {
         if (idx <= employees.length - 1) {
             return employees[idx].getNameFull();
         } else {
